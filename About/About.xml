@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ModMetaData>
+	<name>ChinesePawnName</name>
+	<author>Gon</author>
+	<supportedVersions>
+		<li>1.1</li>
+		<li>1.2</li>
+	</supportedVersions>
+	<packageId>gon.ChinesePawnName</packageId>
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+		</li>
+	</modDependencies>
+	<loadAfter>
+		<li>UnlimitedHugs.HugsLib</li>
+		<li>brrainz.harmony</li>
+	</loadAfter>
+	<description>
+
+2020.08.11 更新
+- 支援版本 1.2
+
+2020.08.10 更新
+- 修正些姓氏，主要是為之後的新Mod做準備
+- 調升了老人暱稱及錨定暱稱出現機率
+
+模組特色：
+可以為你Rimworld角色產生中文名稱，包含兩大功能
+
+1.姓名自動產生：
+利用豐富文字庫產生姓名
+姓氏：290+
+性別字元：500+
+隨機字符：約20000字庫
+單個性別可以組合出約10億+姓名
+
+2.暱稱自動產生：
+利用現有姓名去產生暱稱
+一般性暱稱：哥、姐、弟、妹、大、小、阿...等字元與姓名作排列組合
+疊字暱稱：取出姓名做疊字
+老年暱稱：根據角色年齡低概率產生
+錨定暱稱：極低概率產生，基本上就是從暱稱庫取(目前暱稱庫不多)
+諧音錨定暱稱：根據角色名稱，利用它的諧音取暱稱(EX. 方筱萍 => 方頻果)[優化中暫無實裝]
+
+請先加載harmony
+作者： Gon
+
+有任何建議可以在巴哈姆特回文串提供
+	</description>
+</ModMetaData>
