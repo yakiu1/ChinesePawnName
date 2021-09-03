@@ -1,4 +1,5 @@
 ﻿using ChinesePawnName.ChineseLib;
+using ChinesePawnName.models;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -22,64 +23,19 @@ namespace ChinesePawnName
         {
 
             string 小名 = "";
-            string 前綴 = "";
+            NickNameWord decoNameWord = getPawnfirstNick(gender, pawn);
             string 後綴 = "";
-
-            #region 名稱產生
-            // 前後規則 
-            // 前綴稱號 小、阿、大
-            // 後綴稱號 哥or姐 弟or妹
-            // 寵物就直接用前綴了
-            if (Verse.Rand.Value >= 0.5f || pawn.RaceProps.Animal)
+            string 前綴 = "";
+            if (decoNameWord.type == 1)
             {
-                if (Verse.Rand.Value >= 0.66f)
-                {
-                    前綴 = "小";
-                }
-                else if (Verse.Rand.Value >= 0.33f)
-                {
-                    前綴 = "阿";
-                }
-                else
-                {
-                    前綴 = "大";
-                }
-
+                前綴 = decoNameWord.word;
             }
             else
             {
-
-                if (gender == Gender.Female)
-                {
-                    if (Verse.Rand.Value >= 0.5f)
-                    {
-
-                        後綴 = "姐";
-                    }
-                    else
-                    {
-
-                        後綴 = "妹";
-                    }
-
-                }
-                else
-                {
-                    if (Verse.Rand.Value >= 0.5f)
-                    {
-
-                        後綴 = "哥";
-                    }
-                    else if (Verse.Rand.Value >= 0.3f)
-                    {
-                        後綴 = "弟";
-                    }
-                    else
-                    {
-                        後綴 = "狗";
-                    }
-                }
+                後綴 = decoNameWord.word;
             }
+
+            #region 名稱產生
             // 取姓取名則一
             // 取姓
             // 取名
@@ -155,8 +111,6 @@ namespace ChinesePawnName
 
 
         }
-
-
 
         //=======================以下尚開發中=====================
         // 取得諧音小名 不穩定 暫不使用
@@ -256,7 +210,6 @@ namespace ChinesePawnName
             }
         }
 
-
         private static bool findWord(string _string, string _string2)
         {
             string temp1 = "";
@@ -279,5 +232,62 @@ namespace ChinesePawnName
             return temp1 == temp2;
         }
 
+        private static NickNameWord getPawnfirstNick(Gender gender = Gender.None, Pawn pawn = null)
+        {
+            NickNameWord firstNickName = new NickNameWord();
+
+
+            if (pawn == null)
+            {
+                return firstNickName;
+            }
+
+            // 前後規則 
+            // 前綴稱號 小、阿、大
+            // 後綴稱號 哥or姐 弟or妹
+            firstNickName.type = 1;
+            if (Verse.Rand.Value >= 0.66f)
+            {
+                firstNickName.word = "小";
+            }
+            else if (Verse.Rand.Value >= 0.33f)
+            {
+                firstNickName.word = "阿";
+            }
+            else
+            {
+                firstNickName.word = "大";
+            }
+
+            if (Verse.Rand.Value >= 0.33f && gender == Gender.Male)
+            {
+                firstNickName.type = 2;
+                if (Verse.Rand.Value >= 0.5f)
+                {
+                    firstNickName.word = "哥";
+                }
+                else
+                {
+                    firstNickName.word = "弟";
+                }
+            }
+
+            if (Verse.Rand.Value >= 0.33f && gender == Gender.Female)
+            {
+                firstNickName.type = 2;
+                if (Verse.Rand.Value >= 0.5f)
+                {
+                    firstNickName.word = "姐";
+                }
+                else
+                {
+                    firstNickName.word = "妹";
+                }
+
+            }
+
+
+            return firstNickName;
+        }
     }
 }

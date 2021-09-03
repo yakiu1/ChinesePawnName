@@ -1,9 +1,6 @@
 ﻿using ChinesePawnName.ChineseLib;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Verse;
 
 namespace ChinesePawnName.ChineseNames
@@ -12,7 +9,7 @@ namespace ChinesePawnName.ChineseNames
     {
         public string[] 姓 = "AllFamilyNames".Translate().ToString().Split(',');
         public string[] 名 = "AllFemaleNameWord".Translate().ToString().Split(',');
-    
+
         public NameTriple GetChineseFemaleName(Pawn pawn)
         {
             //var re1 = new RegExp("^[\u4E00-\\u9fa5]*$")     //漢字的範圍
@@ -44,21 +41,22 @@ namespace ChinesePawnName.ChineseNames
             {
                 if (Verse.Rand.Value < 0.6f)
                 {
-                    return NickNameGenerator.GetNormalNickName(new Verse.NameTriple(名, "", 姓), Gender.Female, pawn);
+                    return NickNameGenerator.GetNormalNickName(new Verse.NameTriple(名, "1", 姓), Gender.Female, pawn);
                 }
                 else if (Verse.Rand.Value < 0.7f)
                 {
-                    return NickNameGenerator.GetStackNickName(new Verse.NameTriple(名, "", 姓), Gender.Female);
+                    return NickNameGenerator.GetStackNickName(new Verse.NameTriple(名, "1", 姓), Gender.Female);
                 }
-                if (Verse.Rand.Value < 0.74f)
+
+                if (Verse.Rand.Value < 0.74f && (pawn != null))
                 {
-                    NameTriple temp = NickNameGenerator.GetNormalNickName(new Verse.NameTriple(名, "", 姓), Gender.Female, pawn);
+                    NameTriple temp = NickNameGenerator.GetNormalNickName(new Verse.NameTriple(名, "1", 姓), Gender.Female, pawn);
                     return new NameTriple(temp.First, temp.First + NickNameGenerator.GetPawnOwnNickName(pawn), temp.Last);
 
                 }
                 else
                 {
-                    NameTriple temp = NickNameGenerator.GetNormalNickName(new Verse.NameTriple(名, "", 姓), Gender.Female, pawn);
+                    NameTriple temp = NickNameGenerator.GetNormalNickName(new Verse.NameTriple(名, "1", 姓), Gender.Female, pawn);
                     return new NameTriple(temp.First, NickNameGenerator.GetAnywayNickName姓(Gender.Female) + 姓, temp.Last); ;
                 }
             }

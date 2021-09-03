@@ -1,10 +1,6 @@
 ﻿using ChinesePawnName.ChineseLib;
-using RimWorld.Planet;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Verse;
 
 namespace ChinesePawnName.ChineseNames
@@ -50,20 +46,21 @@ namespace ChinesePawnName.ChineseNames
 
                 if (Verse.Rand.Value < 0.6f)
                 {
-                    return NickNameGenerator.GetNormalNickName(new Verse.NameTriple(名, "", 姓), Gender.Male, pawn);
+                    return NickNameGenerator.GetNormalNickName(new Verse.NameTriple(名, "1", 姓), Gender.Male, pawn);
                 }
                 else if (Verse.Rand.Value < 0.7f)
                 {
-                    return NickNameGenerator.GetStackNickName(new Verse.NameTriple(名, "", 姓), Gender.Male);
+                    return NickNameGenerator.GetStackNickName(new Verse.NameTriple(名, "1", 姓), Gender.Male);
                 }
-                if (Verse.Rand.Value < 0.74f)
+
+                if (Verse.Rand.Value < 0.74f && (pawn != null))
                 {
-                    NameTriple temp = NickNameGenerator.GetNormalNickName(new Verse.NameTriple(名, "", 姓), Gender.Male, pawn);
+                    NameTriple temp = NickNameGenerator.GetNormalNickName(new Verse.NameTriple(名, "1", 姓), Gender.Male, pawn);
                     return new NameTriple(temp.First, temp.First + NickNameGenerator.GetPawnOwnNickName(pawn), temp.Last);
                 }
                 else
                 {
-                    NameTriple temp = NickNameGenerator.GetNormalNickName(new Verse.NameTriple(名, "", 姓), Gender.Male, pawn);
+                    NameTriple temp = NickNameGenerator.GetNormalNickName(new Verse.NameTriple(名, "1", 姓), Gender.Male, pawn);
                     return new NameTriple(temp.First, NickNameGenerator.GetAnywayNickName姓(Gender.Male) + 姓, temp.Last); ;
                 }
             }
